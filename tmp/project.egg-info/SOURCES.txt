@@ -10,4 +10,7 @@ tmp/middlewares.py
 tmp/pipelines.py
 tmp/settings.py
 tmp/spiders/__init__.py
+tmp/spiders/bisnis_com.py
+tmp/spiders/detik.py
+tmp/spiders/liputan6.py
 tmp/spiders/merdeka.py
