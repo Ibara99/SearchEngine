@@ -31,17 +31,17 @@ def tokenisasi(txt):
             tmp += ch
     return tmp
 
+# generate stopword
+SWfactory = StopWordRemoverFactory()
+stopword = SWfactory.create_stop_word_remover()
+
+# generate stemmer
+Sfactory = StemmerFactory()
+stemmer = Sfactory.create_stemmer()
 def preprosesing(txt):
     #tokenisasi
     txt = tokenisasi(txt)
-
-    # generate stopword
-    SWfactory = StopWordRemoverFactory()
-    stopword = SWfactory.create_stop_word_remover()
-
-    # generate stemmer
-    Sfactory = StemmerFactory()
-    stemmer = Sfactory.create_stemmer()
+    
     hasil = ''
     for i in txt.split():
         # Menghilangkan Kata tidak penting
@@ -61,7 +61,7 @@ words = []
 jumlah = len(data1) #jumlah doc
 c = 1;
 for d in data1:
-    print(c/jumlah, "%")
+    print("%.2f %",%(100 * c/jumlah,))
     #calling pre func
     tmp = [preprosesing(d)]
     pre += tmp
@@ -69,23 +69,28 @@ for d in data1:
     # get list of each word
     for w in tmp:
         if not w in words:
-            words.append(w)
+            words += w
     c+=1
+
+try:    
+    raise Exception("Selesai")
+except:
+    def tfidf():
+        tf = [] # doc
+        idf = [] # doc
+        for w in words:
+            tmp = [] #word
+            df = 0
+            #tf
+            for d in pre:
+                #ini buat idf
+                if w in d:
+                    df +=1
+                #ini buat tf
+                tmp.append(d.count(w))
+            tf.append(tmp)
+            idf.append((np.log(jumlah/df)))
+        return tf, idf
+    tf,idf = tfidf()
+
     
-raise Exception("Selesai")
-
-
-tf = [] # doc
-idf = [] # doc
-for w in words:
-    tmp = [] #word
-    df = 0
-    #tf
-    for d in pre:
-        if w in d:
-            #ini buat idf
-            df +=1
-            #ini buat tf
-            tmp.append(d.count(w))
-    tf.append(tmp)
-    idf.append((np.log(jumlah/df)))
