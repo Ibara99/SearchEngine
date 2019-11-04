@@ -114,5 +114,39 @@ for w in words:
 
     #tfidf
     tfidf.append(np.array(tmp) * tmp_idf)
-
+tfidf = np.array(tfidf)
 #TINGGAL LOAD BOBOT.JSON SAMA SIMILIARITY
+
+#buat input query, hitung tfidf query
+
+query = "apa yang sedang anda pikirkan mengenai pertanian?"
+q_pre = preprosesing(query)
+words_q = words.copy()
+for w in q_pre:
+    if w not in words_q:
+        words_q.append(w)
+
+tf_q = []
+for i in words_q:
+    tf_q.append(q_pre.count(i))
+tfidf_q = np.array(tf_q) * np.array(idf)
+
+
+##similiarity
+sim=[]
+for i in range(tfidf.shape[1]):
+    total_atas = sum(tfidf[:, i]* tfidf_q)
+    atas=pow(total_atas, 0.5)
+    bawah_l=pow(sum(tfidf_q**2), 0.5)
+    bawah_r=pow(sum(tfidf[:,i]**2), 0.5)
+    sim.append(atas/(bawah_l *bawah_r))
+
+#top20
+ind=[i for i in range(len(sim))]
+for i in range(len(sim)):
+    for j in range(len(sim)):
+        if sim[i]>sim[j]:
+            sim[i],sim[j] = sim[j], sim[i]
+            ind[i], ind[j] = ind[j], ind[i]
+
+top10= ind[:10]
