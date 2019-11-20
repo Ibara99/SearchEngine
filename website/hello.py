@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-
+import pre_v1 as p
 app = Flask(__name__)
 
 @app.route('/')
@@ -23,5 +23,10 @@ def profil2(id):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if request.method== 'POST':
-		return 'email kamu adalah : ' + request.form['email']
+		query = request.form['email']
+		hasil = p.cari(query)
+		tmp =""
+		for x in hasil:
+			tmp += str(x) + ", "
+		return '<h2>10 artikel terkait adalah artikel ke : ' + tmp+'</h2>'
 	return render_template('login.html')
