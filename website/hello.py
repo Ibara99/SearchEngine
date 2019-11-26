@@ -29,7 +29,7 @@ def login():
 		tmp =""
 		for x in hasil:
 			tmp += str(x) + ", "
-		return render_template('hasil.html', index=hasil)
+		return render_template('hasil.html', index=hasil) 
 		# return '<h2>10 artikel terkait adalah artikel ke : ' + tmp+'</h2>'
 	return render_template('login.html')
 =======
