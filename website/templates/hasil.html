@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hasil</title>
+</head>
+<body>
+	<a href="./login"><button>Kembali ke halaman pencarian</button></a> <br>
+	<b>10 artikel terkait:</b>
+	<ol>
+	{% for i in index %}
+		<li><a href="#"> artikel ke {{ i }} </a></li>
+	{% endfor %}
+	</ol>
+</body>
+</html>

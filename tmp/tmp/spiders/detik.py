@@ -6,12 +6,14 @@ class DetikSpider(scrapy.Spider):
 	name = 'detik'
 	allowed_domains = ['detik.com']
 	start_urls = ['http://detik.com/tag/jagung']
+	link_sekarang = "http://detik.com/tag/jagung"
 	first = True
 
 	def parse(self, response):
 		#urls = response.css(".meta-content > .desc > h2 > a::attr(href)").extract()
 		urls = response.css("article > a::attr(href)").extract()
 		for url in urls:
+			self.link_sekarang = url
 			yield scrapy.Request(
 				response.urljoin(url),
 				callback=self.parse_detail)
@@ -32,6 +34,7 @@ class DetikSpider(scrapy.Spider):
 			if (not "\n" in i):
 				isi += i + " "
 		yield {
+		"link" : self.link_sekarang,
 		"judul" : judul,
 		"isi" : isi,
 		}

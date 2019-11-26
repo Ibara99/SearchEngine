@@ -90,5 +90,5 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 
-FEED_FORMAT="csv"
-FEED_URI="output.csv"
+FEED_FORMAT="json"
+FEED_URI="output.json"

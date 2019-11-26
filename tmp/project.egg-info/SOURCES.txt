@@ -14,3 +14,5 @@ tmp/spiders/bisnis_com.py
 tmp/spiders/detik.py
 tmp/spiders/liputan6.py
 tmp/spiders/merdeka.py
+tmp/spiders/tentangjagung.py
+tmp/spiders/wikipedia.py
