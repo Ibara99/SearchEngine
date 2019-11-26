@@ -71,6 +71,7 @@ def preprosesing(txt):
 
 anu = input("pre?")
 if (anu == "y"):
+<<<<<<< HEAD
 ##    namaFile1 = "items_liputan6_2.json"
     file = ["src/items_liputan6_3.json",
             "src/items_wikipedia_1.json",
@@ -91,6 +92,24 @@ if (anu == "y"):
 write_csv("output_pre.csv", pre)
 pre = read_csv("output_pre.csv")
 
+=======
+    namaFile1 = "items_liputan6_2.json"
+
+    data1 = readJSON(namaFile1)
+
+    pre = []
+    c = 1;
+    for d in data1:
+        print(c/jumlah, "%")
+        #calling pre func
+        tmp = [preprosesing(d)]
+        pre += tmp
+        c+=1
+        
+    raise Exception("Selesai")
+pre = read_csv("output_pre.csv")
+
+>>>>>>> 5c68a5fa11b6d2fd5708367abf40d0d78e136afc
 # get list of each word
 jumlah = len(pre) #jumlah doc
 words = []
