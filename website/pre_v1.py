@@ -71,6 +71,8 @@ def preprosesing(txt):
 
 def cari(query):
     pre = read_csv("output_pre.csv")
+    with open("data.json", encoding="utf8") as json_file:    
+        artikel = json.load(json_file)
 
     # get list of each word
     jumlah = len(pre) #jumlah doc
@@ -136,4 +138,8 @@ def cari(query):
                 ind[i], ind[j] = ind[j], ind[i]
 
     top10= ind[:10]
-    return top10
+    hasil = []
+    for i in top10:
+        tmp = [artikel[str(i)]['judul'], artikel[str(i)]['link']]
+        hasil.append(tmp)
+    return hasil

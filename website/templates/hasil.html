@@ -4,11 +4,21 @@
 	<title>Hasil</title>
 </head>
 <body>
-	<a href="./login"><button>Kembali ke halaman pencarian</button></a> <br>
-	<b>10 artikel terkait:</b>
+	<h1>Cari Jagung</h1>
+	<form action="./login" method="post">
+		<div>
+			<label>Cari</label>
+			<input type="text" name="email" value="{{ query }}">
+		</div>
+		<div>
+			<input type="submit" name="ok">
+		</div>
+	</form>
+	<div>&nbsp;</div>
+	<b>10 artikel terkait: "{{ query }}"</b>
 	<ol>
 	{% for i in index %}
-		<li><a href="#"> artikel ke {{ i }} </a></li>
+		<li><b><a href="{{i[1]}}"> {{ i[0] }} </a></b></li>
 	{% endfor %}
 	</ol>
 </body>

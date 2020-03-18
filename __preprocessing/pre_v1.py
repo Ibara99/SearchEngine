@@ -7,10 +7,10 @@ import json
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory
 
-def write_json(nama_file, tipe="w"):
+def write_json(nama_file,isi, tipe="w"):
     try:
-        with open("bobot.json", "w") as json_file:
-            json.dump(ind, json_file)
+        with open(nama_file, "w") as json_file:
+            json.dump(isi, json_file)
         return True
     except:
         return False
@@ -36,7 +36,7 @@ def readJSON(namaFile, encoding="urf8"):
     with open(namaFile, encoding="utf8") as json_file:    
         data = json.load(json_file)
         for d in data:
-            campur += [f"{d['judul']} {d['isi']} "]
+            campur += [[d['judul'], d['isi'], d['link']]]
     return campur
 
 def tokenisasi(txt):
@@ -71,8 +71,7 @@ def preprosesing(txt):
 
 anu = input("pre?")
 if (anu == "y"):
-<<<<<<< HEAD
-##    namaFile1 = "items_liputan6_2.json"
+
     file = ["src/items_liputan6_3.json",
             "src/items_wikipedia_1.json",
             "src/items_merdeka_5.json",
@@ -85,31 +84,13 @@ if (anu == "y"):
         for d in data1:
             print(c/jumlah, "%")
             #calling pre func
-            tmp = [preprosesing(d)]
+            tmp = [preprosesing(d[1])]
             pre += tmp
             c+=1
             
 write_csv("output_pre.csv", pre)
 pre = read_csv("output_pre.csv")
 
-=======
-    namaFile1 = "items_liputan6_2.json"
-
-    data1 = readJSON(namaFile1)
-
-    pre = []
-    c = 1;
-    for d in data1:
-        print(c/jumlah, "%")
-        #calling pre func
-        tmp = [preprosesing(d)]
-        pre += tmp
-        c+=1
-        
-    raise Exception("Selesai")
-pre = read_csv("output_pre.csv")
-
->>>>>>> 5c68a5fa11b6d2fd5708367abf40d0d78e136afc
 # get list of each word
 jumlah = len(pre) #jumlah doc
 words = []
